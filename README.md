@@ -26,3 +26,4 @@ Alterar Status: Transição entre os estados: Disponível, Fazendo e Feita.
 ### Padrões de Projeto Utilizados
  1. Singleton: Para garantir 1 só instância da Lista de Tarefas
  2. Adapter: Para adaptaçaõ do metodo de armazenamento (TXT ou JSON)
+ 3. Strategy:
