@@ -25,11 +25,13 @@ class ListaDeTarefas:
             return False
 
         novo_id = len(self.tarefas_registradas) + 1
+        tarefa.id = novo_id
 
         self.tarefas_registradas.append({
             "id": novo_id,
             "nome": tarefa.nome,
-            "status": "pendente"
+            "status": "pendente",
+            "descricao": tarefa.descricao
         })
         return True
 

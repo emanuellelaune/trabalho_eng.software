@@ -17,9 +17,11 @@ def regra_feita(atual):
 
 
 class Tarefa:
-    def __init__(self, nome, status=Status.DISPONIVEL):
+    id = None
+    def __init__(self, nome, descricao, status=Status.DISPONIVEL):
         self.nome = nome
         self.status = status
+        self.descricao = descricao
         
         self._estrategias = {
             Status.DISPONIVEL: regra_disponivel,
