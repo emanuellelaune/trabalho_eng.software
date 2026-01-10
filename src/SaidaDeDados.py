@@ -13,10 +13,8 @@ class DadosJson:
         # dados: [[nome, descricao, status],[nome, descricao, status], ...]
         # Formatação dos dados para salvar em Json:
         dadosFormatados = {}
-        aux = 0
         for item in dados:
-            aux += 1
-            dadosFormatados.update({str(aux): item})
+            dadosFormatados.update({str(item['id']): item})
             
 
         with open("Dados_Lista_de_Tarefas.json", 'w', encoding='utf-8') as arquivoJson:
