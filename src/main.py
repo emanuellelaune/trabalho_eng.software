@@ -1,10 +1,7 @@
 import ListaDeTarefas as lt
 import SaidaDeDados as sdd
-import estrategias as est
-
 
 class GerenciadorTarefas:
-    
     
     def __init__(self):
         self.lista = lt.ListaDeTarefas()  # Singleton
@@ -222,7 +219,6 @@ def main():
     """Função principal que inicia o programa."""
     gerenciador = GerenciadorTarefas()
     gerenciador.executar()
-
 
 if __name__ == "__main__":
     main()

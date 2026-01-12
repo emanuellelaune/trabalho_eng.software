@@ -43,7 +43,7 @@ class ListaDeTarefas:
         return True
 
 #metodo para remover tarefa
-        def remover_tarefa(self):
+    def remover_tarefa(self):
         if not self.tarefas_registradas:
             print(" Não há tarefas para remover.")
             return False
