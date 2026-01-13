@@ -141,7 +141,7 @@ class GerenciadorTarefas:
     def _salvar_txt(self):
         """Salva dados em TXT."""
         try:
-            adaptador = sdd.AdapterDados(sdd.DadosTXT())
+            adaptador = sdd.SalvamentoContext(sdd.SalvarTXT())
             adaptador.salvar_dados(self.lista.get_lista())
             print(" Sucesso: Dados salvos em TXT!")
         except Exception as e:
@@ -150,7 +150,7 @@ class GerenciadorTarefas:
     def _salvar_json(self):
         """Salva dados em JSON."""
         try:
-            adaptador = sdd.AdapterDados(sdd.DadosJson())
+            adaptador = sdd.SalvamentoContext(sdd.SalvarJson())
             adaptador.salvar_dados(self.lista.get_lista())
             print(" Sucesso: Dados salvos em JSON!")
         except Exception as e:
