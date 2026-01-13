@@ -13,22 +13,14 @@ class ListaDeTarefas:
     def get_lista(self):
         return self.tarefas_registradas
 
-    # Método para definir os dados da lista
-    ## Aplicar o ADAPTER por aqui
-    def set_lista(self, dados):
-        pass
+    # Método para importar dados para a lista
+    # def set_lista(self, dados):
+    #     pass
 
 
-    # método para adicionar uma tarefa
-  
-    def adicionar_tarefa(self):
-        nome = input("Digite o nome da tarefa: ").strip()
-        descricao = input("Digite a descrição da tarefa: ").strip()
-
-        if not nome:
-            print(" Nome inválido!")
-            return False
-
+    # Método para adicionar uma tarefa
+    def adicionar_tarefa(self, nome, descricao):
+       
         novo_id = len(self.tarefas_registradas) + 1
 
         self.tarefas_registradas.append({
@@ -42,24 +34,45 @@ class ListaDeTarefas:
         print(f"ID {novo_id} - {nome} [pendente]")
         return True
 
-#metodo para remover tarefa
-    def remover_tarefa(self):
-        if not self.tarefas_registradas:
-            print(" Não há tarefas para remover.")
-            return False
+    # Método para remover uma tarefa
+    def remover_tarefa(self, id_tarefa):
 
-        try:
-            id_tarefa = int(input("Digite o ID da tarefa que deseja remover: "))
+        for tarefa in self.tarefas_registradas:
+            if tarefa["id"] == id_tarefa:
+                self.tarefas_registradas.remove(tarefa)
+                print(" Tarefa removida com sucesso!")
+                return True
 
-            for tarefa in self.tarefas_registradas:
-                if tarefa["id"] == id_tarefa:
-                    self.tarefas_registradas.remove(tarefa)
-                    print(" Tarefa removida com sucesso!")
-                    return True
-
-            print(" ID não encontrado.")
-            return False
-
-        except ValueError:
-            print(" Digite um número válido.")
-            return False
+        print(f" Erro: ID {id_tarefa} não encontrado.")
+        return False
+    
+    # Método para alterar o status de uma tarefa
+    def alterar_status(self, id_tarefa):
+        tarefa_encontrada = None
+        for tarefa in self.get_lista():
+            if tarefa["id"] == id_tarefa:
+                tarefa_encontrada = tarefa
+                break
+        
+        if not tarefa_encontrada:
+            print(f" Erro: ID {id_tarefa} não encontrado.")
+            return
+        
+        print("\nNovos status disponíveis:")
+        print(" 1 - Pendente")
+        print(" 2 - Fazendo")
+        print(" 3 - Feita")
+        
+        opcao_status = int(input("Opção: "))
+        status_mapa = {
+            1: "pendente",
+            2: "fazendo",
+            3: "feita"
+        }
+        
+        if opcao_status in status_mapa:
+            novo_status = status_mapa[opcao_status]
+            tarefa_encontrada["status"] = novo_status
+            print(f" Sucesso: Status atualizado para: {novo_status}\n")
+        else:
+            print(" Erro: Opção inválida!")

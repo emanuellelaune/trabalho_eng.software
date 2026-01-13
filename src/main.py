@@ -39,10 +39,10 @@ class GerenciadorTarefas:
         print("LISTAGEM DE TAREFAS")
         print("-"*50)
         
-        if not self.lista.tarefas_registradas:
+        if not self.lista.get_lista():
             print(" Info: Nenhuma tarefa registrada ainda.")
         else:
-            for tarefa in self.lista.tarefas_registradas:
+            for tarefa in self.lista.get_lista():
                 status_label = "Feito" if tarefa["status"] == "feita" else "Em espera"
                 print(f"\n[{status_label}] ID {tarefa['id']} - {tarefa['nome']}")
                 print(f"   Status: {tarefa['status']}")
@@ -66,16 +66,8 @@ class GerenciadorTarefas:
             print(" Erro: Descrição não pode estar vazia!")
             return
         
-        novo_id = len(self.lista.tarefas_registradas) + 1
-        self.lista.tarefas_registradas.append({
-            "id": novo_id,
-            "nome": nome,
-            "descricao": descricao,
-            "status": "pendente"
-        })
-        
-        print(f"\n Sucesso: Tarefa adicionada!")
-        print(f"   ID {novo_id} - {nome} [pendente]")
+        # Método para adicionar tarefa
+        self.lista.adicionar_tarefa(nome=nome, descricao=descricao)
     
     def remover_tarefa(self):
         
@@ -83,7 +75,7 @@ class GerenciadorTarefas:
         print("REMOÇÃO DE TAREFA")
         print("-"*50)
         
-        if not self.lista.tarefas_registradas:
+        if not self.lista.get_lista():
             print(" Erro: Não há tarefas para remover.")
             return
         
@@ -92,13 +84,8 @@ class GerenciadorTarefas:
         try:
             id_tarefa = int(input("\nDigite o ID da tarefa a remover: "))
             
-            for tarefa in self.lista.tarefas_registradas:
-                if tarefa["id"] == id_tarefa:
-                    self.lista.tarefas_registradas.remove(tarefa)
-                    print(f" Sucesso: Tarefa {id_tarefa} removida!\n")
-                    return
-            
-            print(f" Erro: ID {id_tarefa} não encontrado.")
+            # Método para remover tarefa
+            self.lista.remover_tarefa(id_tarefa=id_tarefa)
         
         except ValueError:
             print(" Erro: Digite um número válido!")
@@ -109,7 +96,7 @@ class GerenciadorTarefas:
         print("ALTERAÇÃO DE STATUS")
         print("-"*50)
         
-        if not self.lista.tarefas_registradas:
+        if not self.lista.get_lista():
             print(" Erro: Nenhuma tarefa disponível.")
             return
         
@@ -118,34 +105,8 @@ class GerenciadorTarefas:
         try:
             id_tarefa = int(input("\nDigite o ID da tarefa: "))
             
-            tarefa_encontrada = None
-            for tarefa in self.lista.tarefas_registradas:
-                if tarefa["id"] == id_tarefa:
-                    tarefa_encontrada = tarefa
-                    break
-            
-            if not tarefa_encontrada:
-                print(f" Erro: ID {id_tarefa} não encontrado.")
-                return
-            
-            print("\nNovos status disponíveis:")
-            print(" 1 - Pendente")
-            print(" 2 - Fazendo")
-            print(" 3 - Feita")
-            
-            opcao_status = int(input("Opção: "))
-            status_mapa = {
-                1: "pendente",
-                2: "fazendo",
-                3: "feita"
-            }
-            
-            if opcao_status in status_mapa:
-                novo_status = status_mapa[opcao_status]
-                tarefa_encontrada["status"] = novo_status
-                print(f" Sucesso: Status atualizado para: {novo_status}\n")
-            else:
-                print(" Erro: Opção inválida!")
+            # Método para alterar status
+            self.lista.alterar_status(id_tarefa=id_tarefa)
         
         except ValueError:
             print(" Erro: Digite valores válidos!")
@@ -181,7 +142,7 @@ class GerenciadorTarefas:
         """Salva dados em TXT."""
         try:
             adaptador = sdd.AdapterDados(sdd.DadosTXT())
-            adaptador.salvar_dados(self.lista.tarefas_registradas)
+            adaptador.salvar_dados(self.lista.get_lista())
             print(" Sucesso: Dados salvos em TXT!")
         except Exception as e:
             print(f" Erro ao salvar TXT: {e}")
@@ -190,7 +151,7 @@ class GerenciadorTarefas:
         """Salva dados em JSON."""
         try:
             adaptador = sdd.AdapterDados(sdd.DadosJson())
-            adaptador.salvar_dados(self.lista.tarefas_registradas)
+            adaptador.salvar_dados(self.lista.get_lista())
             print(" Sucesso: Dados salvos em JSON!")
         except Exception as e:
             print(f" Erro ao salvar JSON: {e}")
