@@ -34,8 +34,8 @@ Permite a transição entre os estados:
 
 ### Padrões de Projeto Utilizados:
 
-1.  Singleton: Para garantir 1 só instância da Lista de Tarefas.
-2.  Strategy:Usado para modelar como a tarefa se comporta ou como ela valida a transição (mudança de status) dependendo do estado em que ela está no momento. Também usado ara adaptaçaõ do metodo de armazenamento (TXT ou JSON).
+1.  Singleton: Para garantir 1 só instância da Lista de Tarefas (ListaDeTarefas.py).
+2.  Strategy: Usado para modelar como a tarefa se comporta ou como ela valida a transição (mudança de status) dependendo do estado em que ela está no momento. Também usado ara adaptaçaõ do metodo de armazenamento, txt ou json (SaidaDeDados.py).
 
 ## Funcionamento
 
