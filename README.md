@@ -4,28 +4,41 @@
 
 ![Python](https://img.shields.io/badge/python-3.8+-306998?style=flat&labelColor=FFD43B)
 
+
 ## Sobre o projeto
-
 Tem como objetivo implementação eficaz dos estudos aprendidos em sala de aula, é uma atividade focada em gerenciar tarefas, permitindo que o usuário de crie, visualize, remova e atualize suas atividades ao longo do progresso.
-Funcionalidades:
+### Funcionalidades
 
-Adicionar Tarefa: Cadastro com nome, descrição e status.
-Listar Tarefas: Exibição completa das tarefas e seus estados atuais.
-Remover Tarefa: Exclusão de itens selecionados.
-Alterar Status: Transição entre os estados: Disponível, Fazendo e Feita.
+#### Adicionar Tarefa:
+Permite o cadastro de uma nova tarefa informando nome, descrição e status inicial.
 
-### Padrões de Projeto Utilizados
+#### Listar Tarefas:
+Exibe todas as tarefas cadastradas, mostrando seus identificadores e estados atuais.
 
-1.  Singleton: Para garantir 1 só instância da Lista de Tarefas
-2.  Strategy: Usado para modelar como a tarefa se comporta ou como ela valida a transição (mudança de status) dependendo do estado em que ela está no momento. Também usado para definir o formato do arquivo de salvamento de dados (TXT ou JSON)
+#### Remover Tarefa:
+Possibilita a exclusão de uma tarefa específica a partir do seu ID.
+
+#### Alterar Status:
+Permite a transição entre os estados:
+
+1.Disponível
+
+2.Fazendo
+
+3.Feita
+
+### Padrões de Projeto Utilizados: 
+ 1. Singleton: Para garantir 1 só instância da Lista de Tarefas.
+ 2. Adapter: Para adaptaçaõ do metodo de armazenamento (TXT ou JSON).
+ 3. Strategy:Usado para modelar como a tarefa se comporta ou como ela valida a transição (mudança de status) dependendo do estado em que ela está no momento.
 
 ## Funcionamento
+A função main() é o ponto central da aplicação. Ela é responsável por executar a classe GerenciadorTarefas e iniciar a execução do sistema por meio do método executar(), que controla o fluxo principal do programa e a interação com o usuário pelo terminal.
 
-O programa funciona via linha de comando, com um menu simples onde o usuário escolhe a função que deseja utilizar ou encerra o programa (opção "6 - Sair").
+#### 👥 Equipe 
 
-Optamos por manter uma main, que é a cabeça do projeto e local em que ocorre a lógica do aplicativo.
+1.Bárbara Ellen
 
-Os arquivos ListaDeTarefas.py e SaidaDeDados.py abrigam as classes e métodos aos quais seus nomes se referem:
+2.Emanuelle da Silva 
 
-- ListaDeTarefas.py: classe ListaDeTarefas e os métodos para adição, remoção, alteração de status das tarefas;
-- SaidaDeDados.py: classes SalvarStrategy (abstrata), SalvarTXT, SalvarJSON, SalvamentoContext.
+3.Letícia Assunção
